@@ -1,0 +1,16 @@
+
+services:
+  app:
+    environment:
+      - DJANGO_SETTINGS_MODULE=bible.settings  # Aponta para o módulo correto
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # Volume correto para desenvolvimento
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"  # Executa o servidor do Django
+  db:
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
